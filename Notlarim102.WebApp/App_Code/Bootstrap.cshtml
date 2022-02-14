@@ -1,0 +1,30 @@
+﻿@helper LinkButton(string url="",string color="",string addtionalClass="",string title="",string icon="",string text="")
+{
+    <a href="@url" class="btn btn-@color @addtionalClass" title="@title"><i class="@icon"></i> @text</a>
+}
+
+<!-- Button trigger modal -->
+<!--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Launch demo modal
+</button>-->
+
+@helper ModalPopup(string id="myModal",string title="Modal Title",bool showCloseButton=true)
+{
+    <!-- Modal -->
+    <div class="modal fade" id="@id" tabindex="-1" aria-labelledby="@(id+"_label")" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" id="@(id+"_header")">
+                    <h5 class="modal-title" id="@(id+"_label")">@title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="@(id+"_body")">
+                    ...
+                </div>
+                <div class="modal-footer" id="@(id+"_footer")">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

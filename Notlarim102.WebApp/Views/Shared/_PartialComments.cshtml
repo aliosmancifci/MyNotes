@@ -1,0 +1,56 @@
+﻿@using Notlarim102.Entity
+@using Notlarim102.WebApp.Models
+@model List<Comment>
+
+@{
+    NotlarimUser user = CurrentSession.User;
+}
+
+
+@foreach (Comment item in Model)
+{
+    <div class="d-flex border border-danger mb-1">
+        <div class="flex-shrink-0 mt-3">
+            @*<i class="bi bi-chat-left-dots-fill text-danger ms-3"></i>*@
+            <img src="/images/@item.Owner.ProfileImageFilename" class="rounded-circle ms-3" width="60" height="60" alt="...">
+        </div>
+        <div class="flex-grow-1 row ms-3">
+            <span class="col-md-9 fs-6" id="comment_text_@item.Id" contenteditable="false">@item.Text</span>
+            @if (user != null && user.Id == item.Owner.Id)
+            {
+                <span class="col-md-3">
+                    <button type="button" class="btn btn-warning btn-sm mt-2" data-edit-mode="false" onclick="doComment(this,'edit_clicked',@item.Id,'#comment_text_@item.Id')">
+                        <span class="bi bi-pencil"></span>
+                    </button>
+                    <button type="button" class="btn btn-danger btn-sm mt-2" onclick="doComment(this,'delete_clicked',@item.Id)">
+                        <span class="bi bi-trash"></span>
+                    </button>
+                </span>
+            }
+            <small class="col-md-12">
+                <span class="bi bi-clock"></span> @item.ModifiedOn &nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="bi bi-person"></span>@item.Owner.Username
+            </small>
+        </div>
+    </div>
+}
+@if (user != null)
+{
+    <div class="row">
+        <div class="col-md-12">
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="input-group mb-3">
+                <input type="text" id="new_comment_text" class="form-control" placeholder="Yorumunuz">
+                <span class="input-group-text" id="basic-addon2">
+                    <button type="button" class="btn btn-success" onclick="doComment(this, 'new_clicked', -1)">
+                        <span class="far fa-paper-plane"></span> Gonder
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+}

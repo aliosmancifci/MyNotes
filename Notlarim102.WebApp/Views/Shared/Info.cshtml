@@ -1,0 +1,50 @@
+﻿@model Notlarim102.WebApp.ViewModel.InfoViewModel
+
+@{
+    ViewBag.Title = "Info";
+}
+
+<link href="~/Content/Login-RegisterStyle.css" rel="stylesheet" />
+
+<div class="logreg">
+    <main class="form-signin">
+        <form>
+            <img class="mb-4 rounded-circle" src="~/images/aliosman.jpg" alt="" width="144" height="125">
+            <h1 class="h3 mb-3 fw-normal">@Model.Header</h1>
+            <div class="text-success">
+                <h2>
+                    <span>@Model.Title</span>
+                </h2>
+                <hr />
+                <p class="text-justify">
+                    @foreach (string msg in Model.Items)
+                    {
+                        @msg<br />
+                    }
+                </p>
+            </div>
+        </form>
+    </main>
+</div>
+
+@{
+    string js = string.Empty;
+    if (Model.IsRedirecting)
+    {
+        js = "setTimeout(function () {window.location = '" + Model.RedirectingUrl + "';}," + Model.RedirectingTimeout + ");";
+    }
+}
+
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("header").hide();
+        $(".footer1").hide();
+        $("#category1").hide();
+        $("#category2").addClass("col-md-12").removeClass("col-md-10");
+
+        /*setTimeout(function() {window.location = "/Home/Index";},3000);*/
+        @Html.Raw(js);
+    });
+</script>
+

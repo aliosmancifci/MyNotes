@@ -1,0 +1,37 @@
+﻿@using Notlarim102.Entity
+@model NotlarimUser
+@{
+    ViewBag.Title = "Kullanici Profili";
+}
+
+<div class="container">
+    <div class="row mt-5">
+        <h2>@ViewBag.Title</h2>
+        <hr />
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <img src="~/images/@Model.ProfileImageFilename" class="rounded-circle" width="148" height="148" alt="Alternate Text" />
+        </div>
+        <div class="col-md-8">
+            <h3>@(Model.Name +" "+Model.Surname)</h3>
+            <br />
+            <h6><b>@Html.DisplayNameFor(model=>model.Username) :</b> @Model.Username </h6>
+            <h6><b>@Html.DisplayNameFor(model=>model.Email) :</b> @Model.Email </h6>
+            <br />
+            <h6><a href="#">More...</a></h6>
+        </div>
+        @*<div class="col-md-2">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    Options
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="@Url.Action("EditProfile")">Duzenle</a></li>
+                    <li><a class="dropdown-item" href="@Url.Action("DeleteProfile")" onclick="return confirm('Are you sure remove this account?');">Sil</a></li>
+                </ul>
+            </div>
+        </div>*@
+    </div>
+</div>
+
